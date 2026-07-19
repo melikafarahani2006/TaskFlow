@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="TaskFlow.Application/TaskFlow.Application.csproj" Id="579720b8-1860-4199-a9d5-ec96caddc732" />
+    <Project Path="TaskFlow.Domain/TaskFlow.Domain.csproj" Id="dd930180-d1c1-49b8-8263-5353ed27614a" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
