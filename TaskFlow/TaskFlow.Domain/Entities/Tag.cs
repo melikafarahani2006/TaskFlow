@@ -12,6 +12,6 @@ namespace TaskFlow.Domain.Entities
         public string Color { get; set; } = string.Empty;
         // Navigation Properties
         public Project? Project { get; set; }
-        public ICollection<TaskItem> TaskItems { get; set; } = [];
+        public ICollection<TagTaskItem> TaskTags { get; set; } = [];
     }
 }

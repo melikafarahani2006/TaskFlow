@@ -14,7 +14,7 @@ namespace TaskFlow.Domain.Entities
         public TaskPriority Priority { get; set; }
         public DateTime? DueDate { get; set; }
         public Guid? AssignedUserId { get; set; }
-        public ICollection<Tag> Tags { get; set; } = [];
+        public ICollection<TagTaskItem> TaskTags { get; set; } = [];
         // Navigation Property
         public TaskList? TaskList { get; set; }
     }
