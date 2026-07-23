@@ -4,6 +4,7 @@ using System.Text;
 using TaskFlow.Application.Common;
 using TaskFlow.Application.Projects.Dtos;
 using TaskFlow.Application.Projects.Interfaces;
+using TaskFlow.Application.TaskLists.Interfaces;
 using TaskFlow.Application.Workspaces.Interfaces;
 using TaskFlow.Domain.Entities;
 
@@ -14,10 +15,13 @@ namespace TaskFlow.Application.Projects.Services
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IWorkspaceRepository _workspaceRepository;
-        public ProjectService(IProjectRepository projectRepository, IWorkspaceRepository workspaceRepository)
+        private readonly ITaskListRepository _taskListRepository;
+
+        public ProjectService(IProjectRepository projectRepository, IWorkspaceRepository workspaceRepository, ITaskListRepository taskListRepository)
         {
             _projectRepository = projectRepository;
             _workspaceRepository = workspaceRepository;
+            _taskListRepository = taskListRepository;
         }
         public async Task<ProjectDto> CreateAsync(Guid workspaceId, CreateProjectRequest request)
         {
@@ -44,11 +48,34 @@ namespace TaskFlow.Application.Projects.Services
             await _projectRepository.AddAsync(Project);
             await _projectRepository.SaveChangesAsync();
 
+            await _taskListRepository.AddAsync(new TaskList
+            {
+                ProjectId = Project.Id,
+                Name = "Todo",
+                Order = 1
+            });
+
+            await _taskListRepository.AddAsync(new TaskList
+            {
+                ProjectId = Project.Id,
+                Name = "In Progress",
+                Order = 2
+            });
+
+            await _taskListRepository.AddAsync(new TaskList
+            {
+                ProjectId = Project.Id,
+                Name = "Done",
+                Order = 3
+            });
+
+            await _taskListRepository.SaveChangesAsync();
+
             return new ProjectDto
             {
                 Id = Project.Id,
                 Name = Project.Name,
-                Description = request.Description
+                Description = request.Description,
             };
         }
     }

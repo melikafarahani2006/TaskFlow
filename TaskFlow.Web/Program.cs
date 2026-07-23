@@ -4,11 +4,12 @@ using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 using System.Reflection;
 using TaskFlow.Application.Projects.Interfaces;
 using TaskFlow.Application.Projects.Services;
+using TaskFlow.Application.TaskLists.Interfaces;
+using TaskFlow.Application.TaskLists.Services;
 using TaskFlow.Application.Workspaces.Interfaces;
 using TaskFlow.Application.Workspaces.Services;
 using TaskFlow.Infrastructure.Persistence;
 using TaskFlow.Infrastructure.Persistence.Repositories;
-using TaskFlow.Web.Middleware;
 using TaskFlow.Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,8 @@ builder.Services.AddScoped<IWorkspaceRepository, WorkspaceRepository>();
 builder.Services.AddScoped<IWorkspaceService, WorkspaceService>();
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<ITaskListRepository, TaskListRepository>();
+builder.Services.AddScoped<ITaskListService, TaskListService>();
 
 var app = builder.Build();
 
