@@ -25,6 +25,7 @@ namespace TaskFlow.Application.Workspaces.Services
             var workspace = new Workspace
             {
                 Name = request.Name,
+                Description = request.Description,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -34,7 +35,8 @@ namespace TaskFlow.Application.Workspaces.Services
             return new WorkspaceDto
             {
                 Id = workspace.Id,
-                Name = workspace.Name
+                Name = workspace.Name,
+                Description = request.Description
             };
         }
     }

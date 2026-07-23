@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TaskFlow.Application.Workspaces.Dtos
+namespace TaskFlow.Application.Projects.Dtos
 {
-    public class WorkspaceDto
+    public class ProjectDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
